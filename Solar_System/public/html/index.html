@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Solar System Simulator</title>
+    <link rel="stylesheet" href="../css/styles.css">
+    <link rel="stylesheet" href="../../../clock.css">
+    <link rel="stylesheet" href="../dropdown.css">
+
+  </head>
+  <body onload="initClock()" >
+    
+      
+
+      
+    <a href="/"> <button type="button" onclick="alert('you are going to home page \n thank you....')" style="position: absolute; display: block; z-index: 99; left:50%; right: 50% ; color: white;"  >Logout</button></a>
+   
+    <div class="dropdown">
+      <button class="dropbtn">Planets</button>
+      <div class="dropdown-content">
+        <a href="../earth.html">Earth</a>
+        <a href="../mars.html">Mars</a>
+       
+      </div>
+    </div>
+  
+  <div  class=center>
+
+
+
+    <!-- digital clock start-->
+    <div class="datetime">
+      <div class="date">
+        <span id="dayname">Day</span>
+        <span id="month">Month</span>
+        <span id="daynum">00</span>
+        <span id="year">Year</span>
+      </div>
+      <div class="time">
+           <span id="hour">00</span>
+       <span id="minutes">00</span>
+       <span id="seconds">00</span>
+       <span id="period">AM</span>
+      </div>
+    </div>
+    <!--digital clock end-->
+  
+
+    <script >
+  
+      function updateClock(){
+        var now = new Date();
+            var dname= now.getDay(),
+        mo=now.getMonth(),
+        dnum=now.getDate(),
+        yr=now.getFullYear(),
+        hou=now.getHours(),
+        min=now.getMinutes(),
+        sec = now.getSeconds(),
+        pe="AM";
+    
+        if(hou >= 12){
+          pe="PM";
+        }
+        if(hou ==0){
+          hou=12;
+        }
+        if(hou > 12){
+          hou = hou - 12;
+        }
+            
+        Number.prototype.pad = function(digits){
+          for(var n=this.toString(); n.length < digits ; n=0+n);
+                return n;
+          
+        }
+    
+        var months = ["January" , "February" , "March" , "April" , "May" , "June" , "July" , "August" , "September" ,"October" ,"November" , "December"];
+        var week = ["Sunday" , "Monday" , "Tuesday" , "Wednesday" , "Thursday" , "Friday" , "saturday"];
+        var ids = ["dayname" , "month" , "daynum" , "year" , "hour" , "minutes" , "seconds" , "period" ]
+        var values = [week[dname], months[mo], dnum.pad(2), yr, hou.pad(2), min.pad(2), sec.pad(2) , pe];
+        for(var i=0 ; i < ids.length;i++ )
+        document.getElementById(ids[i]).firstChild.nodeValue = values[i];
+      }
+        
+      function initClock(){
+        updateClock();
+        window.setInterval("updateClock()" , 1);
+      }
+      </script>
+    </div>
+    
+    <canvas id="canvas"></canvas>
+    <script src="../js/dat.gui.min.js"> </script>
+    <script src="../js/three.min.js"> </script>
+    <script src="../js/GLTFLoader.js"> </script>
+    <script src="../js/OrbitControls.js"> </script>
+    <script src="../js/script.js"> </script>
+    <div id="instructions">
+      <button type="button" title="Info" onclick="myFunction()"> >
+     <img width="40" src="https://findicons.com/files/icons/734/phuzion/256/info.png " />
+  </button></div>
+  <script>
+  function myFunction() {
+    alert("Controls:\n1-light: control the lighting for all the objects\n2-speed:\n  A- Orbit Speed: Control the speed of the planet around the sun\n  B-Rotation Speed: control the speed of rotation around the object self");
+  }
+  </script>
+  </body>
+</html>

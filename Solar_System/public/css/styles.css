@@ -1,0 +1,36 @@
+/* To remove margin and padding */
+body {
+  margin: 0;
+  padding: 0;
+}
+
+/* To make the canvas occupy the whole screen and remove scroll bar */
+#canvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  /* To remove the blue outline (depends on the OS) */
+  outline: none;
+}
+
+/* To make sure that it is impossible to scroll down */
+html,body {
+  overflow: hidden;
+}
+#instructions{
+  position:absolute;
+  width:50%;
+  top:50%;
+  margin: auto;
+  margin-top:-360px;
+  text-align : left;
+
+}
+button {
+    border: none;
+    background-color: transparent;
+    outline: none;
+}
+button:focus {
+    border: none;
+}
